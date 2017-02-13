@@ -29,7 +29,7 @@ module.exports = function(env) {
       hotOnly: true,
       contentBase: resolve(__dirname, 'src'),
       host: '0.0.0.0',
-      port: '8000',
+      port: '80',
       publicPath: '/',
     },
 
