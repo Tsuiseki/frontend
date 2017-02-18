@@ -44,11 +44,12 @@ module.exports = function(env) {
           exclude: /node_modules/
         },
         {
-          test: /\.css$/,
+          test: /\.s?css$/,
           use: [
             'style-loader',
             'css-loader?modules',
             'postcss-loader',
+            'sass-loader',
           ],
         },
       ],
