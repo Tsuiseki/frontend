@@ -8,15 +8,19 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "webpack -p"
+    "build": "webpack -p",
+    "test": "jest"
   },
   "devDependencies": {
     "babel": "^6.5.2",
     "babel-core": "^6.22.1",
+    "babel-jest": "^18.0.0",
     "babel-loader": "^6.2.10",
+    "babel-polyfill": "^6.23.0",
     "babel-preset-latest": "^6.22.0",
     "babel-preset-react": "^6.22.0",
     "css-loader": "^0.26.1",
+    "jest": "^18.1.0",
     "node-sass": "^4.5.0",
     "postcss-loader": "^1.2.2",
     "react-hot-loader": "beta",
