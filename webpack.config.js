@@ -1,11 +1,12 @@
-const webpack = require('webpack');
-const { resolve }  = require('path');
+const webpack = require('webpack')
+const path = require('path')
 
-module.exports = function(env) {
+module.exports = function (env) {
   return {
     entry: {
       app: [
-        './src/index.js',
+        'react-hot-loader/patch',
+        './src/index.jsx',
       ],
 
       vendor: [
@@ -20,14 +21,15 @@ module.exports = function(env) {
 
     output: {
       filename: 'bundle.js',
-      path: resolve(__dirname, 'dist'),
+      path: path.resolve(__dirname, 'dist'),
     },
 
     devtool: 'inline-source-map',
 
     devServer: {
       hotOnly: true,
-      contentBase: resolve(__dirname, 'src'),
+      contentBase: path.resolve(__dirname, 'src'),
+      historyApiFallback: true,
       host: '0.0.0.0',
       port: '80',
       publicPath: '/',
@@ -41,7 +43,7 @@ module.exports = function(env) {
             'react-hot-loader/webpack',
             'babel-loader',
           ],
-          exclude: /node_modules/
+          exclude: /node_modules/,
         },
         {
           test: /\.s?css$/,
@@ -55,6 +57,14 @@ module.exports = function(env) {
       ],
     },
 
+    resolve: {
+      modules: [
+        path.resolve(__dirname, 'src'),
+        'node_modules',
+      ],
+      extensions: [ '.js', '.jsx' ],
+    },
+
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NamedModulesPlugin(),
@@ -63,6 +73,6 @@ module.exports = function(env) {
         minChunks: Infinity,
         filename: 'vendor.js',
       }),
-    ],  
+    ],
   }
 }

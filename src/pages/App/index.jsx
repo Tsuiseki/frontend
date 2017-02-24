@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
+import styles from './styles.scss'
 
-const App = () => (
-  <div>
-    <h2>Hello World</h2>
+const App = (props) => (
+  <div className={styles.container}>
+    {props.children}
   </div>
 )
+
+App.propTypes = {
+  children: PropTypes.object.isRequired,
+}
 
 export default App
