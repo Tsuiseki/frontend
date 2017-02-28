@@ -1,11 +1,13 @@
+/* globals require, module, __dirname */
 const webpack = require('webpack')
 const path = require('path')
 
-module.exports = function (env) {
+module.exports = function() {
   return {
     entry: {
       app: [
         'react-hot-loader/patch',
+        'babel-polyfill',
         './src/index.jsx',
       ],
 
