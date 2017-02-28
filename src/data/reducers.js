@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
-import showReducers from './data/show/reducers'
+import showReducers from './show/reducers'
 
 // Combine all reducers into one root reducer
 export default combineReducers({

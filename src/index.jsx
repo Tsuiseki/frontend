@@ -1,9 +1,10 @@
+/* globals document, module, require */
 import React from 'react'
 import { render } from 'react-dom'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { browserHistory } from 'react-router'
 import { AppContainer } from 'react-hot-loader'
-import { configureStore } from './store'
+import { configureStore } from 'data/store'
 import Bootstrap from './Bootstrap'
 
 const store = configureStore()
