@@ -1,4 +1,4 @@
-/* globals document, module, require */
+/* globals document, module */
 import React from 'react'
 import { render } from 'react-dom'
 import { syncHistoryWithStore } from 'react-router-redux'
@@ -22,8 +22,5 @@ const startUpApp = (Component) => {
 startUpApp(Bootstrap)
 
 if (module.hot) {
-  module.hot.accept('./Bootstrap', () => {
-    const NewBootstrap = require('./Bootstrap').default
-    startUpApp(NewBootstrap)
-  })
+  module.hot.accept('./Bootstrap', () => startUpApp(Bootstrap))
 }
