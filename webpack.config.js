@@ -6,8 +6,8 @@ module.exports = function() {
   return {
     entry: {
       app: [
-        'react-hot-loader/patch',
         'babel-polyfill',
+        'react-hot-loader/patch',
         './src/index.jsx',
       ],
 
@@ -42,7 +42,6 @@ module.exports = function() {
         {
           test: /\.jsx?$/,
           use: [
-            'react-hot-loader/webpack',
             'babel-loader',
           ],
           exclude: /node_modules/,
