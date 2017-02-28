@@ -6,10 +6,11 @@
             "jsx": true
         }
     },
+    "extends": ["eslint:recommended", "plugin:react/recommended"],
     "rules": {
         "semi": ["error", "never"],
         "no-trailing-spaces": "error",
-        "space-before-function-paren": "error",
+        "space-before-function-paren": ["error", "never"],
         "object-shorthand": "error",
         "object-curly-spacing": ["error", "always"],
         "array-bracket-spacing": ["error", "always"],
