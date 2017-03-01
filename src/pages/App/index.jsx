@@ -1,14 +1,12 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import { Route } from 'react-router-dom'
+import ShowGallery from 'pages/ShowGallery'
 import styles from './styles.scss'
 
-const App = (props) => (
+const App = () => (
   <div className={styles.container}>
-    {props.children}
+    <Route path="/" component={ShowGallery} />
   </div>
 )
-
-App.propTypes = {
-  children: PropTypes.object.isRequired,
-}
 
 export default App

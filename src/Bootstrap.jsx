@@ -1,13 +1,14 @@
 import React, { PropTypes } from 'react'
 import { Provider } from 'react-redux'
-import { Router } from 'react-router'
-import routes from 'pages/routes'
+import { ConnectedRouter } from 'connected-react-router'
+import { Route } from 'react-router-dom'
+import App from 'pages/App'
 
 const Bootstrap = ({ store, history }) => (
   <Provider store={store}>
-    <Router history={history}>
-      {routes}
-    </Router>
+    <ConnectedRouter history={history}>
+      <Route path="/" component={App} />
+    </ConnectedRouter>
   </Provider>
 )
 
