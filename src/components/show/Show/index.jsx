@@ -11,10 +11,8 @@ const Show = (props) => (
 )
 
 Show.propTypes = {
-  shows: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-  })),
+  name: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
 }
 
 export default Show
