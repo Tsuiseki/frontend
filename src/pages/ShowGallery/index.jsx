@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { getShows } from 'data/shows/selectors'
-import { fetchShows } from 'data/shows/actions'
+import { getShows } from 'data/show/selectors'
+import { fetchShows } from 'data/show/actions'
 import ShowList from 'components/show/ShowList'
 import styles from './styles.scss'
 

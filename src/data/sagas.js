@@ -1,5 +1,5 @@
 import { fork } from 'redux-saga/effects'
-import showSagas from './shows/sagas.js'
+import showSagas from './show/sagas.js'
 
 const sagas = [
   showSagas,
