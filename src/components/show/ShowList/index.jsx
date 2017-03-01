@@ -20,7 +20,7 @@ ShowList.propTypes = {
   shows: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
-    _id: PropTypes.number.isRequired,
+    _id: PropTypes.string.isRequired,
   })).isRequired,
 }
 
