@@ -10,15 +10,6 @@ module.exports = function() {
         'react-hot-loader/patch',
         './src/index.jsx',
       ],
-
-      vendor: [
-        'react',
-        'redux',
-        'react-dom',
-        'react-router',
-        'react-redux',
-        'react-router-redux',
-      ],
     },
 
     output: {
@@ -71,8 +62,10 @@ module.exports = function() {
       new webpack.NamedModulesPlugin(),
       new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor',
-        minChunks: Infinity,
         filename: 'vendor.js',
+        minChunks(module) {
+         return module.context && module.context.indexOf('node_modules') !== -1
+        },
       }),
     ],
   }
