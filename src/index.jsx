@@ -3,7 +3,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import { createBrowserHistory } from 'history'
-import { configureStore } from 'data/store'
+import { configureStore } from './data/store'
 import Bootstrap from './Bootstrap'
 
 const history = createBrowserHistory()
