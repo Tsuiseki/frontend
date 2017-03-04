@@ -1,4 +1,4 @@
-/* globals module */
+/* globals module, window */
 import { createStore, applyMiddleware, compose } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import { connectRouter, routerMiddleware } from 'connected-react-router'
@@ -19,14 +19,15 @@ export function configureStore(history, initialState = {}) {
   const sagaMiddleware = createSagaMiddleware()
 
   // create store
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
   const store = createStore(
     generateReducer(history),
     initialState,
-    compose(
+    composeEnhancers(
       applyMiddleware(
         sagaMiddleware,
         routerMiddlewareInit,
-      )
+      ),
     )
   )
 
