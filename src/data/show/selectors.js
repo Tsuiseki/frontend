@@ -1,1 +1,1 @@
-export const getShows = state => state.shows
+export const getShows = state => state.shows.list
