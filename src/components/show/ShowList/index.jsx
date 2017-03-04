@@ -9,6 +9,7 @@ const ShowList = (props) => (
         <Show
           name={show.name}
           image={show.image}
+          episodes={show.episodes}
           key={show._id}
         />
       ))
@@ -18,9 +19,10 @@ const ShowList = (props) => (
 
 ShowList.propTypes = {
   shows: PropTypes.arrayOf(PropTypes.shape({
+    _id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
-    _id: PropTypes.string.isRequired,
+    episodes: PropTypes.number,
   })).isRequired,
 }
 
