@@ -11,7 +11,9 @@ const ShowList = (props) => (
           image={show.image}
           episodes={show.episodes}
           key={show._id}
-        />
+        >
+        {props.showOptions != null && props.showOptions(show._id)}
+        </Show>
       ))
     }
   </div>
@@ -24,6 +26,7 @@ ShowList.propTypes = {
     image: PropTypes.string.isRequired,
     episodes: PropTypes.number,
   })).isRequired,
+  showOptions: PropTypes.func,
 }
 
 export default ShowList

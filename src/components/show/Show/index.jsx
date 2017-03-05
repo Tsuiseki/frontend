@@ -10,6 +10,9 @@ const Show = (props) => (
       {props.episodes != null ? props.episodes : '?'}
     </div>
     <img className={styles.showImage} src={props.image} />
+    <div className={styles.showOptions}>
+      {props.children}
+    </div>
   </div>
 )
 
@@ -17,6 +20,7 @@ Show.propTypes = {
   name: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   episodes: PropTypes.number,
+  children: PropTypes.element,
 }
 
 export default Show
