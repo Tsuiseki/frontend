@@ -22,7 +22,6 @@ export default function showsReducer(state = defaultState, action) {
         ],
       }
     case SHOW_DELETE_SUCCESS:
-      console.log(state.list, action)
       return {
         ...state,
         list: state.list.filter(show => show._id != action.id),
