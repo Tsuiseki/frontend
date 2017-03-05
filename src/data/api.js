@@ -24,7 +24,18 @@ async function create(entrypoint, data) {
   return response.json()
 }
 
+async function _delete(entrypoint, id) {
+  const response = await _fetch(
+    buildPath(`${entrypoint}/${id}`),
+    {
+      method: 'DELETE',
+    }
+  )
+  return response.ok
+}
+
 export default {
   fetch,
   create,
+  delete: _delete,
 }
