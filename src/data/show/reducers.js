@@ -1,4 +1,4 @@
-import { SHOW_FETCH_SUCCESS, SHOW_CREATE_SUCCESS } from './actions'
+import { SHOW_FETCH_SUCCESS, SHOW_CREATE_SUCCESS, SHOW_DELETE_SUCCESS } from './actions'
 
 const defaultState = {
   list: [],
@@ -20,6 +20,12 @@ export default function showsReducer(state = defaultState, action) {
             ...action.show,
           },
         ],
+      }
+    case SHOW_DELETE_SUCCESS:
+      console.log(state.list, action)
+      return {
+        ...state,
+        list: state.list.filter(show => show._id != action.id),
       }
     default:
       return state

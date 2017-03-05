@@ -3,6 +3,7 @@ import api from 'data/api'
 import {
   receiveShows, failReceiveShows, SHOW_FETCH_REQUEST,
   receiveShow, failReceiveShow, SHOW_CREATE_REQUEST,
+  removeShow, failRemoveShow, SHOW_DELETE_REQUEST,
 } from './actions'
 
 const SHOW_ENTRYPOINT = 'show'
@@ -25,10 +26,25 @@ function* createShow(action) {
   }
 }
 
+function* deleteShow(action) {
+  try {
+    const ok = yield call(api.delete, SHOW_ENTRYPOINT, action.id)
+
+    if (ok) {
+      yield put(removeShow(action.id))
+    } else {
+      yield put(failRemoveShow(`Failed to delete show ${action.id}`))
+    }
+  } catch(e) {
+      yield put(failRemoveShow(e.message))
+  }
+}
+
 function* showSaga() {
   yield [
     takeLatest(SHOW_FETCH_REQUEST, fetchShows),
     takeLatest(SHOW_CREATE_REQUEST, createShow),
+    takeLatest(SHOW_DELETE_REQUEST, deleteShow),
   ]
 }
 
