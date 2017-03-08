@@ -13,5 +13,16 @@
   "plugins": [
     "react-hot-loader/babel",
     "transform-object-rest-spread"
-  ]
+  ],
+  "env": {
+    "test": {
+      "presets": [
+        "latest",
+        "react"
+      ],
+      "plugins": [
+        "transform-object-rest-spread"
+      ],
+    }
+  }
 }
