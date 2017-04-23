@@ -24,6 +24,7 @@ module.exports = function() {
       contentBase: path.resolve(__dirname, 'src'),
       historyApiFallback: true,
       host: '0.0.0.0',
+      disableHostCheck: true,
       port: '80',
       publicPath: '/',
     },
