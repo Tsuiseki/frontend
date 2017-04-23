@@ -40,6 +40,7 @@
     "connected-react-router": "^4.x",
     "es6-promise": "^4.x",
     "isomorphic-fetch": "^2.x",
+    "prop-types": "^15.x",
     "react": "^15.x",
     "react-dom": "^15.x",
     "react-redux": "^5.x",
