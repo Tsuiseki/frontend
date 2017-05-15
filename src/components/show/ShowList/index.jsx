@@ -13,12 +13,18 @@ const ShowList = (props) => (
           episodes={show.episodes}
           key={show._id}
         >
-        {props.showOptions != null && props.showOptions(show._id)}
+          {renderOptions(props, show)}
         </Show>
       ))
     }
   </div>
 )
+
+const renderOptions = (props, show) => {
+  if (props.showOptions != null) {
+    return props.showOptions(show._id)
+  }
+}
 
 ShowList.propTypes = {
   shows: PropTypes.arrayOf(PropTypes.shape({
