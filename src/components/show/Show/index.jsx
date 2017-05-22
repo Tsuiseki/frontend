@@ -19,7 +19,7 @@ const Show = (props) => (
 
 Show.propTypes = {
   name: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+  image: PropTypes.string,
   episodes: PropTypes.number,
   children: PropTypes.element,
 }
