@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { getShows } from 'data/show/selectors'
+import { getShows, getCreationState } from 'data/show/selectors'
 import { fetchShows, createShow, deleteShow } from 'data/show/actions'
 import ShowList from 'components/show/ShowList'
 import ShowEdit from 'components/show/ShowEdit'
@@ -28,7 +28,10 @@ class ShowAdmin extends Component {
   render() {
     return (
       <div className={styles.showGallery}>
-        <ShowEdit onSubmit={(show, image) => this.props.createShow(show, image)} />
+        <ShowEdit
+          onSubmit={(show, image) => this.props.createShow(show, image)}
+          creationState={this.props.creationState}
+        />
         <ShowList shows={this.props.shows} showOptions={this.showOptions} />
       </div>
     )
@@ -37,6 +40,7 @@ class ShowAdmin extends Component {
 
 ShowAdmin.propTypes = {
   shows: PropTypes.arrayOf(PropTypes.object).isRequired,
+  creationState: PropTypes.string.isRequired,
   fetchShows: PropTypes.func.isRequired,
   createShow: PropTypes.func.isRequired,
   deleteShow: PropTypes.func.isRequired,
@@ -45,6 +49,7 @@ ShowAdmin.propTypes = {
 function mapStateToProps(state) {
   return {
     shows: getShows(state),
+    creationState: getCreationState(state),
   }
 }
 
