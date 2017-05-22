@@ -10,11 +10,13 @@ const ShowEdit = (props) => {
       className={styles.showEdit}
       onSubmit={(event) => {
         event.preventDefault()
-        props.onSubmit({
-          name: nameInput.value,
-          image: imageInput.value,
-          episodes: episodesInput.value,
-        })
+        props.onSubmit(
+          {
+            name: nameInput.value,
+            episodes: episodesInput.value,
+          },
+          imageInput.files[0],
+        )
       }}
     >
       <div>
@@ -23,7 +25,7 @@ const ShowEdit = (props) => {
       </div>
       <div>
         <label>Image: </label>
-      <input type="text" ref={node => imageInput = node}/>
+      <input type="file" ref={node => imageInput = node}/>
       </div>
       <div>
         <label>Episodes: </label>

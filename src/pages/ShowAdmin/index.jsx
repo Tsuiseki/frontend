@@ -28,7 +28,7 @@ class ShowAdmin extends Component {
   render() {
     return (
       <div className={styles.showGallery}>
-        <ShowEdit onSubmit={(show) => this.props.createShow(show)} />
+        <ShowEdit onSubmit={(show, image) => this.props.createShow(show, image)} />
         <ShowList shows={this.props.shows} showOptions={this.showOptions} />
       </div>
     )
@@ -51,7 +51,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     fetchShows: () => dispatch(fetchShows()),
-    createShow: (show) => dispatch(createShow(show)),
+    createShow: (show, image) => dispatch(createShow(show, image)),
     deleteShow: (id) => dispatch(deleteShow(id)),
   }
 }
