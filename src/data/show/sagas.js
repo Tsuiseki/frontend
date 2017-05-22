@@ -3,6 +3,7 @@ import api from 'data/api'
 import {
   receiveShows, failReceiveShows, SHOW_FETCH_REQUEST,
   receiveShow, failReceiveShow, SHOW_CREATE_REQUEST,
+  editShow, failEditShow,
   removeShow, failRemoveShow, SHOW_DELETE_REQUEST,
 } from './actions'
 
@@ -21,8 +22,20 @@ function* createShow(action) {
   try {
     const show = yield call(api.create, SHOW_ENTRYPOINT, action.show)
     yield put(receiveShow(show))
+    yield* uploadShowImage(show._id, action.image)
   } catch(e) {
     yield put(failReceiveShow(e.message))
+  }
+}
+
+function* uploadShowImage(id, image) {
+  const imageUploadEntrypoint = `${SHOW_ENTRYPOINT}/${id}/image`
+
+  try {
+    const response = yield call(api.upload, imageUploadEntrypoint, image)
+    yield put(editShow(id, { image: response.image }))
+  } catch(e) {
+    yield put(failEditShow(e.message))
   }
 }
 
