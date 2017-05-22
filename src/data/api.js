@@ -23,6 +23,20 @@ async function create(entrypoint, data) {
   return response.json()
 }
 
+async function upload(entrypoint, file) {
+  const form = new FormData()
+  form.append('file', file)
+
+  const response = await _fetch(
+    buildPath(entrypoint),
+    {
+      method: 'PUT',
+      body: form,
+    }
+  )
+  return response.json()
+}
+
 async function _delete(entrypoint, id) {
   const response = await _fetch(
     buildPath(`${entrypoint}/${id}`),
@@ -37,6 +51,7 @@ export const API_PREFIX = 'api/v1'
 export default {
   fetch,
   create,
+  upload,
   delete: _delete,
 }
 
