@@ -22,7 +22,10 @@ function* createShow(action) {
   try {
     const show = yield call(api.create, SHOW_ENTRYPOINT, action.show)
     yield put(receiveShow(show))
-    yield* uploadShowImage(show._id, action.image)
+
+    if (action.image) {
+      yield* uploadShowImage(show._id, action.image)
+    }
   } catch(e) {
     yield put(failReceiveShow(e.message))
   }
