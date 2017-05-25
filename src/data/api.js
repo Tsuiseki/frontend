@@ -47,7 +47,7 @@ async function _delete(entrypoint, id) {
   return response.ok
 }
 
-export const API_PREFIX = 'api/v1'
+export const API_PREFIX = '/api/v1'
 export default {
   fetch,
   create,
