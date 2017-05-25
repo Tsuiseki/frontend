@@ -6,8 +6,17 @@ import { CREATION } from 'data/show/states'
 class ShowEdit extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      name: '',
+      episodes: '',
+      image: '',
+      imageFile: null,
+    }
 
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleNameChange = this.handleNameChange.bind(this)
+    this.handleEpisodesChange = this.handleEpisodesChange.bind(this)
+    this.handleImageChange = this.handleImageChange.bind(this)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -17,20 +26,42 @@ class ShowEdit extends Component {
     }
   }
 
+  handleNameChange(event) {
+    this.setState({ name: event.target.value })
+  }
+
+  handleEpisodesChange(event) {
+    this.setState({ episodes: event.target.value })
+  }
+
+  handleImageChange(event) {
+    this.setState({
+      image: event.target.value,
+      imageFile: event.target.files[0],
+    })
+  }
+
+  isSaveDisabled() {
+    return this.props.creationState === CREATION.IN_PROGRESS || this.state.name === ''
+  }
+
   cleanInputs() {
-    this.nameInput.value = ''
-    this.episodesInput.value = ''
-    this.imageInput.value = ''
+    this.setState({
+      name: '',
+      episodes: '',
+      image: '',
+      imageFile: null,
+    })
   }
 
   handleSubmit(event) {
     event.preventDefault()
     this.props.onSubmit(
       {
-        name: this.nameInput.value,
-        episodes: this.episodesInput.value,
+        name: this.state.name,
+        episodes: this.state.episodes,
       },
-      this.imageInput.files[0],
+      this.state.imageFile,
     )
   }
 
@@ -42,18 +73,25 @@ class ShowEdit extends Component {
       >
         <div>
           <label>Name: </label>
-          <input type="text" ref={node => this.nameInput = node}/>
+          <input type="text" value={this.state.name} onChange={this.handleNameChange} />
         </div>
         <div>
           <label>Image: </label>
-        <input type="file" ref={node => this.imageInput = node}/>
+          <input type="file" value={this.state.image} onChange={this.handleImageChange} />
         </div>
         <div>
           <label>Episodes: </label>
-          <input type="text" ref={node => this.episodesInput = node}/>
+          <input type="text" value={this.state.episodes} onChange={this.handleEpisodesChange} />
         </div>
-        <button type="submit" disabled={this.props.creationState === CREATION.IN_PROGRESS}>
-          Create
+        <button type="submit" disabled={this.isSaveDisabled()}>
+          Save
+        </button>
+        <button
+          type="button"
+          onClick={() => this.props.onCancel()}
+          disabled={this.props.creationState === CREATION.IN_PROGRESS}
+        >
+          Cancel
         </button>
       </form>
     )
@@ -62,6 +100,7 @@ class ShowEdit extends Component {
 
 ShowEdit.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  onCancel: PropTypes.func,
   creationState: PropTypes.string.isRequired,
 }
 
