@@ -1,12 +1,15 @@
 /* globals module, window */
-import { createStore, applyMiddleware, compose } from 'redux'
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import createSagaMiddleware from 'redux-saga'
-import { connectRouter, routerMiddleware } from 'connected-react-router'
+import { routerReducer, routerMiddleware } from 'react-router-redux'
 import appReducers from './reducers'
 import appSagas from './sagas'
 
-function generateReducer(history) {
-  return connectRouter(history)(appReducers)
+function generateReducer() {
+  return combineReducers({
+    ...appReducers,
+    router: routerReducer,
+  })
 }
 
 function runSagas(middleware) {
@@ -21,7 +24,7 @@ export function configureStore(history, initialState = {}) {
   // create store
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
   const store = createStore(
-    generateReducer(history),
+    generateReducer(),
     initialState,
     composeEnhancers(
       applyMiddleware(
@@ -37,7 +40,7 @@ export function configureStore(history, initialState = {}) {
   // hot reload
   if (module.hot) {
     module.hot.accept('./reducers', () => {
-      store.replaceReducer(generateReducer(history))
+      store.replaceReducer(generateReducer())
     })
 
     module.hot.accept('./sagas', async () => {

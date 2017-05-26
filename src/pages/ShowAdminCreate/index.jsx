@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { push } from 'connected-react-router'
+import { push } from 'react-router-redux'
 import { connect } from 'react-redux'
 import { getCreationState } from 'data/show/selectors'
 import { createShow } from 'data/show/actions'

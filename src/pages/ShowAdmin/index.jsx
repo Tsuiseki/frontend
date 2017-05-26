@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Switch, Route, Link } from 'react-router-dom'
-import { push } from 'connected-react-router'
+import { push } from 'react-router-redux'
 import { connect } from 'react-redux'
 import { getShows } from 'data/show/selectors'
 import { fetchShows, deleteShow } from 'data/show/actions'

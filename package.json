@@ -30,14 +30,13 @@
     "jest": "^19.x",
     "node-sass": "^4.x",
     "postcss-loader": "^1.x",
-    "react-hot-loader": "^3.x",
+    "react-hot-loader": "^3.0.0-beta.7",
     "sass-loader": "^6.x",
     "style-loader": "^0.x",
     "webpack": "^2.x",
     "webpack-dev-server": "^2.x"
   },
   "dependencies": {
-    "connected-react-router": "^4.x",
     "es6-promise": "^4.x",
     "isomorphic-fetch": "^2.x",
     "prop-types": "^15.x",
@@ -46,6 +45,7 @@
     "react-redux": "^5.x",
     "react-router": "4.x",
     "react-router-dom": "^4.x",
+    "react-router-redux": "^5.0.0-alpha.6",
     "redux": "^3.x",
     "redux-saga": "^0.x"
   }
