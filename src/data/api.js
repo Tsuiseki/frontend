@@ -27,7 +27,7 @@ async function update(entrypoint, id, data) {
   const response = await _fetch(
     buildPath(`${entrypoint}/${id}`),
     {
-      method: 'PUT',
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
