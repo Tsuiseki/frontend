@@ -4,6 +4,7 @@ export const SHOW_FETCH_FAILURE = 'SHOWS_FETCH_FAILURE'
 export const SHOW_CREATE_REQUEST = 'SHOW_CREATE_REQUEST'
 export const SHOW_CREATE_SUCCESS = 'SHOW_CREATE_SUCCESS'
 export const SHOW_CREATE_FAILURE = 'SHOW_CREATE_FAILURE'
+export const SHOW_EDIT_REQUEST = 'SHOW_EDIT_REQUEST'
 export const SHOW_EDIT_SUCCESS = 'SHOW_EDIT_SUCCESS'
 export const SHOW_EDIT_FAILURE = 'SHOW_EDIT_FAILURE'
 export const SHOW_DELETE_REQUEST = 'SHOW_DELETE_REQUEST'
@@ -50,7 +51,16 @@ export function failReceiveShow() {
   }
 }
 
-export function editShow(id, show) {
+export function editShow(id, show, image) {
+  return {
+    type: SHOW_EDIT_REQUEST,
+    id,
+    show,
+    image,
+  }
+}
+
+export function updateShow(id, show) {
   return {
     type: SHOW_EDIT_SUCCESS,
     id,
@@ -58,7 +68,7 @@ export function editShow(id, show) {
   }
 }
 
-export function failEditShow() {
+export function failUpdateShow() {
   return {
     type: SHOW_EDIT_FAILURE,
   }

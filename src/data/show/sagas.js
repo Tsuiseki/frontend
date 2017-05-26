@@ -3,7 +3,7 @@ import api from 'data/api'
 import {
   receiveShows, failReceiveShows, SHOW_FETCH_REQUEST,
   receiveShow, failReceiveShow, SHOW_CREATE_REQUEST,
-  editShow, failEditShow,
+  updateShow, failUpdateShow, SHOW_EDIT_REQUEST,
   removeShow, failRemoveShow, SHOW_DELETE_REQUEST,
 } from './actions'
 
@@ -23,11 +23,24 @@ function* createShow(action) {
     const show = yield call(api.create, SHOW_ENTRYPOINT, action.show)
     yield put(receiveShow(show))
 
-    if (action.image) {
+    if (action.image != null) {
       yield* uploadShowImage(show._id, action.image)
     }
   } catch(e) {
     yield put(failReceiveShow(e.message))
+  }
+}
+
+function* editShow(action) {
+  try {
+    const show = yield call(api.update, SHOW_ENTRYPOINT, action.id, action.show)
+    yield put(updateShow(action.id, show))
+
+    if (action.image != null) {
+      yield* uploadShowImage(show._id, action.image)
+    }
+  } catch(e) {
+    yield put(failUpdateShow(e.message))
   }
 }
 
@@ -36,9 +49,9 @@ function* uploadShowImage(id, image) {
 
   try {
     const response = yield call(api.upload, imageUploadEntrypoint, image)
-    yield put(editShow(id, { image: response.image }))
+    yield put(updateShow(id, { image: response.image }))
   } catch(e) {
-    yield put(failEditShow(e.message))
+    yield put(failUpdateShow(e.message))
   }
 }
 
@@ -60,6 +73,7 @@ function* showSaga() {
   yield [
     takeLatest(SHOW_FETCH_REQUEST, fetchShows),
     takeLatest(SHOW_CREATE_REQUEST, createShow),
+    takeLatest(SHOW_EDIT_REQUEST, editShow),
     takeLatest(SHOW_DELETE_REQUEST, deleteShow),
   ]
 }

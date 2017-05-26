@@ -4,3 +4,10 @@ export const CREATION = {
   SUCCEEDED: 'SUCCEEDED',
   FAILED: 'FAILED',
 }
+
+export const EDIT = {
+  PRISTINE: 'PRISTINE',
+  IN_PROGRESS: 'IN_PROGRESS',
+  SUCCEEDED: 'SUCCEEDED',
+  FAILED: 'FAILED',
+}
